@@ -1,0 +1,50 @@
+.gallery {
+  padding: 2rem;
+  background-color: darkblue;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(1fr, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.imageCard {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  p {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: gray;
+    margin: 0;
+  }
+}
