@@ -1,17 +1,17 @@
-import path from "path";
 import { useState, useEffect } from "react";
 
-export function Hookimage() {
-  const [images, setImages] = useState([]);
+export function useImage() {
+  const [images, setImages] = useState<{ name: string; src: string }[]>([]);
 
   useEffect(() => {
     const loadImages = async () => {
-      const imageModules = import.meta.glob("../assets/*.jpg", { eager: true });
+      // Når billeder er i publice mappen.
+      const imageModules = import.meta.glob("/public/img/*.{jpg,svg}", { eager: true });
 
       const imagePaths = Object.keys(imageModules).map((path) => {
-        // Fjern '../assets/' og '.jpg' fra stien for at få billednavnet
-        const imageName = path.replace("../assets/", "").replace(".jpg", "");
-        return { name: imageName, src: imageModules[path].default };
+        // Fjern '/public/' og filtypen fra stien for at få billednavnet
+        const imageName = path.replace("/public/", "").replace(/\.(jpg|svg)$/, "");
+        return { name: imageName, src: (imageModules[path] as { default: string }).default };
       });
 
       setImages(imagePaths);
